@@ -5,18 +5,24 @@ This is a collaboration to create a *blog/article webpage*
 <details>
   <summary>The Foundations</summary>
   <br>
-  Built with:
-  * HTML
-  * CSS
-  * JS
+  <ul>
+    Built with:<br>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JS</li>
+  </ul>
 </details>
-***
+
+<br />
+
 <details open>
   <summary>Steps</summary>
   <br>
-  1. 
-  2. 
-  3. 
-  4.
-  5.
+  <ol>
+    <li> </li>
+    <li> </li>
+    <li> </li>
+    <li> </li>
+    <li> </li>
+  </ol>
 </details>
