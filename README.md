@@ -1,10 +1,12 @@
+  # **Blog/Article page**
+<br />
+This is a collaboration to create a _blog/article webpage_ 
+
 <br />
 <div align="center">
-  # **Blog/Article page**
 </div>
 
 <br />
-This is a collaboration to create a _blog/article webpage_ 
 
 <details>
   <summary>The Foundations</summary>
