@@ -1,8 +1,7 @@
 # **Blog Article page**
-This is a collaboration to create a *blog/article webpage*
-***
+This is a collaboration to create a *blog/article* webpage
 
-<details>
+<details open>
   <summary>The Foundations</summary>
   <br>
   <ul>
