@@ -10,6 +10,8 @@ This is a collaboration to create a *blog/article* webpage
     <li>CSS</li>
     <li>JS</li>
   </ul>
+  <br>
+  [Preview Page](http://127.0.0.1:3000/index.html?serverWindowId=27cd3fdf-85e0-421b-bb9b-9ecca282bd2f)
 </details>
 
 <br />

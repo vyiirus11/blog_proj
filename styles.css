@@ -1,3 +1,37 @@
 @import
 url('https://fonts.googleapis.com/css2?family=David+Libre&family=Josefin+Sans&display=swap');
 
+:root {
+    --bg-size: 100% 100%;
+    --main_color: #f0e3ce;
+    --title: 'Josefin Sans', sans-serif;
+    --font-para: 'David Libre', serif;
+    --btn-color: #bbe1fa;
+    --btn-font-color: #000;
+    --btn-font: 1.5rem;
+    --eff: .3s all ease;
+}
+
+body {
+   font-family: Arial, sans-serif;
+   margin: 0;
+   padding: 0;
+}
+header {
+   background-color: #333;
+   color: white;
+   padding: 1rem;
+   text-align: center;
+}
+main {
+   padding: 1rem;
+}
+article {
+   margin-bottom: 2rem;
+}
+footer {
+   background-color: #333;
+   color: white;
+   text-align: center;
+   padding: 1rem;
+}
