@@ -18,7 +18,6 @@ This is a collaboration to create a *blog/article* webpage
 <details open>
   <summary>LIVE PREVIEW STEPS</summary>
   <br>
-  To only access Live Preview without touching the code, skip to STEP 3.
   <ol>
     <!--1.-->
     <br>
@@ -50,7 +49,12 @@ This is a collaboration to create a *blog/article* webpage
     </a>
     in VSCode:<br>
     <ul>
-      <li>as long this extension is downloaded, you would be able to access the local server without opening VSCode (copy and paste the link)</li>
+      <li>as long you have this extension downloaded and the code, you can access the local server while editing </li>
+      <li>
+      <a href="http://127.0.0.1:3000/index.html?serverWindowId=27cd3fdf-85e0-421b-bb9b-9ecca282bd2f" title="http://127.0.0.1:3000/index.html?serverWindowId=27cd3fdf-85e0-421b-bb9b-9ecca282bd2f">
+      Preview Page
+      </a>
+      </li>
     </ul>
     <br>
     <div align="center">
@@ -59,7 +63,6 @@ This is a collaboration to create a *blog/article* webpage
     </li>
     <!--4-->
     <br>
-    <li>Preview Page (http://127.0.0.1:3000/index.html?serverWindowId=27cd3fdf-85e0-421b-bb9b-9ecca282bd2f)</li>
     <li> </li>
     <li> </li>
     <li> </li>
