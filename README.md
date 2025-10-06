@@ -1,26 +1,22 @@
-  # **Blog/Article page**
-<br />
-This is a collaboration to create a _blog/article webpage_ 
-
-<br />
-<div align="center">
-</div>
-
-<br />
+# **Blog Article page**
+This is a collaboration to create a *blog/article webpage*
+***
 
 <details>
   <summary>The Foundations</summary>
-  <br />
-  To build it, we will use:
-  
-  * [HTML](https://youtu.be/-lYjZFwDtO8?si=L5puaUxrksQ8aai4)
+  <br>
+  Built with:
+  * HTML
   * CSS
   * JS
 </details>
-
-<br />
-
+***
 <details open>
   <summary>Steps</summary>
-
+  <br>
+  1. 
+  2. 
+  3. 
+  4.
+  5.
 </details>
