@@ -1,7 +1,7 @@
 @import
 url('https://fonts.googleapis.com/css2?family=David+Libre&family=Josefin+Sans&display=swap');
 
-:root {
+:root{
     --bg-size: 100% 100%;
     --main_color: #f0e3ce;
     --title: 'Josefin Sans', sans-serif;
@@ -11,25 +11,78 @@ url('https://fonts.googleapis.com/css2?family=David+Libre&family=Josefin+Sans&di
     --btn-font: 1.5rem;
     --eff: .3s all ease;
 }
-
-body {
-   font-family: Arial, sans-serif;
-   margin: 0;
-   padding: 0;
+html{
+   font-size: 62.5%;
 }
-header {
+figure img,
+.fab,
+.fas{
+   transition: var(--eff);
+}
+a,
+a:hover{
+   text-decoration: none;
+   cursor: pointer;
+}
+body{
+   /*change color of bg*/
+   background: hsl(0, 0%, 75%);
+}
+header{
    background-color: #333;
    color: white;
    padding: 1rem;
    text-align: center;
 }
-main {
+
+/*mains*/
+main{
    padding: 1rem;
 }
-article {
+.main_header{
+   font-family: var(--title);
+   font-weight: bold;
+   font-size: 5rem;
+   color: #000;
+}
+.main_header_para{
+   font-size: 2.2rem;
+}
+.main_header_div{
+   height: calc(100vh - 4 vh);
+   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0)), url();/*url of img here or we can use custom (backgroung_img)*/
+   background-size: var(--bg-size);
+}
+.main_header_div p{
+   font-weight: bold;
+   font-size: 3.5rem;
+   font-family: var(--title);
+   color: var(--main_color);
+   padding-bottom: 1rem;
+   margin-bottom: 0;
+}
+.main_header_div h2{
+   font-size: 6.5rem;
+   font-weight: bold;
+}a
+.main_header_div span{
+
+}
+.animate_word div{
+
+}
+.animate_word div li{a
+
+}
+.flip{
+
+}
+.main_header_div
+article{
    margin-bottom: 2rem;
 }
-footer {
+
+footer{
    background-color: #333;
    color: white;
    text-align: center;

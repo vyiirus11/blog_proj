@@ -20,7 +20,6 @@ This is a collaboration to create a *blog/article* webpage
   <br>
   <ol>
     <!--1.-->
-    <br>
     <li>
     Have
     <a href="https://code.visualstudio.com/download">
@@ -36,6 +35,7 @@ This is a collaboration to create a *blog/article* webpage
     </a>
     installed
     <ul>
+      <br>
       <li>fork this repository (ps. keep branch name as main)</li>
       <li>open in VSCode</li>
     </ul>
@@ -49,22 +49,32 @@ This is a collaboration to create a *blog/article* webpage
     </a>
     in VSCode:<br>
     <ul>
-      <li>as long you have this extension downloaded and the code, you can access the local server while editing </li>
-      <li>
-      <a href="http://127.0.0.1:3000/index.html?serverWindowId=27cd3fdf-85e0-421b-bb9b-9ecca282bd2f" title="http://127.0.0.1:3000/index.html?serverWindowId=27cd3fdf-85e0-421b-bb9b-9ecca282bd2f">
-      Preview Page
+      <br>
+      <li>If it doesn't work, you can also download another extension
+      <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">
+      Live Server
       </a>
       </li>
-    </ul>
+      <li>as long you downloaded one of these extensions and have the code, you can access the local server while editing </li>
+      <br>
+      <li>
+      <a href="http://127.0.0.1:3000/index.html?serverWindowId=27cd3fdf-85e0-421b-bb9b-9ecca282bd2f" title="http://127.0.0.1:3000/index.html?serverWindowId=27cd3fdf-85e0-421b-bb9b-9ecca282bd2f">
+      Preview Page of Blog/Article
+      </a>
+    <h3>Opt 1:</h3>
     <br>
     <div align="center">
       <img src="images/liveprev.png" alt="Example" width="500">
     </div>
-    </li>
-    <!--4-->
+    <h3>Opt 2:</h3>
     <br>
-    <li> </li>
-    <li> </li>
-    <li> </li>
+    <div align="center">
+      <img src="images/liveserv.png" alt="Example" width="500">
+    </div>      
+    </li>
+    </ul>
+
   </ol>
 </details>
+
+<br>
