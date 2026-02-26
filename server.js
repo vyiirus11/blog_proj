@@ -1,7 +1,9 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import pg from "pg";
+import mongoose from "mongoose";
+
+mongoose.set("strictQuery", true);
 
 const app = express();
 app.use(express.json());
@@ -9,30 +11,39 @@ app.use(express.json());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Serve static files from /public
 app.use(express.static(path.join(__dirname, "public")));
 
-const pool = new pg.Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false,
-});
-
-async function init() {
-  await pool.query(`
-    CREATE TABLE IF NOT EXISTS posts (
-      id SERIAL PRIMARY KEY,
-      title TEXT NOT NULL,
-      body TEXT NOT NULL,
-      created_at TIMESTAMPTZ DEFAULT NOW()
-    );
-  `);
+// ----- MongoDB (Atlas) -----
+const MONGODB_URI = process.env.MONGODB_URI;
+if (!MONGODB_URI) {
+  console.error("Missing MONGODB_URI env var");
+  process.exit(1);
 }
-init().catch(console.error);
 
+try {
+  await mongoose.connect(MONGODB_URI);
+  console.log("✅ Connected to MongoDB");
+} catch (err) {
+  console.error("❌ MongoDB connection error:", err);
+  process.exit(1);
+}
+
+// Schema
+const postSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true, trim: true, maxlength: 120 },
+    body: { type: String, required: true, trim: true, maxlength: 5000 },
+  },
+  { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
+);
+
+const Post = mongoose.model("Post", postSchema);
+
+// API
 app.get("/api/posts", async (req, res) => {
-  const { rows } = await pool.query(
-    "SELECT id, title, body, created_at FROM posts ORDER BY created_at DESC"
-  );
-  res.json(rows);
+  const posts = await Post.find().sort({ created_at: -1 }).lean();
+  res.json(posts);
 });
 
 app.post("/api/posts", async (req, res) => {
@@ -41,15 +52,10 @@ app.post("/api/posts", async (req, res) => {
     return res.status(400).json({ error: "title and body required" });
   }
 
-  const { rows } = await pool.query(
-    "INSERT INTO posts (title, body) VALUES ($1, $2) RETURNING id, title, body, created_at",
-    [title.trim(), body.trim()]
-  );
-  res.status(201).json(rows[0]);
+  const created = await Post.create({ title: title.trim(), body: body.trim() });
+  res.status(201).json(created.toObject());
 });
 
-// For SPA-like setups, optional fallback:
-// app.get("*", (req, res) => res.sendFile(path.join(__dirname, "public", "index.html")));
-
+// Render uses process.env.PORT
 const port = process.env.PORT || 3000;
 app.listen(port, "0.0.0.0", () => console.log("Listening on", port));
