@@ -64,12 +64,12 @@ This is a collaboration to create a *blog/article* webpage
     <h3>Opt 1:</h3>
     <br>
     <div align="center">
-      <img src="images/liveprev.png" alt="Example" width="500">
+      <img src="public/images/liveprev.png" alt="Example" width="500">
     </div>
     <h3>Opt 2:</h3>
     <br>
     <div align="center">
-      <img src="images/liveserv.png" alt="Example" width="500">
+      <img src="public/images/liveserv.png" alt="Example" width="500">
     </div>      
     </li>
     </ul>
