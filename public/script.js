@@ -1,117 +1,54 @@
-//to make the blog interactive
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
+import mongoose from "mongoose";
 
-const postsEl = document.getElementById("posts");
-const form = document.getElementById("postForm");
-const titleEl = document.getElementById("title");
-const bodyEl = document.getElementById("body");
-const msgEl = document.getElementById("msg");
-const submitBtn = document.getElementById("submitBtn");
-const refreshBtn = document.getElementById("refreshBtn");
+const app = express();
+app.use(express.json());
 
-function setMsg(text, type = "muted") {
-  // type: success | danger | muted
-  msgEl.className = `small mb-2 text-${type}`;
-  msgEl.textContent = text || "";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Serve your static files
+app.use(express.static(path.join(__dirname, "public")));
+
+// ----- MongoDB (Atlas) -----
+const MONGODB_URI = process.env.MONGODB_URI;
+if (!MONGODB_URI) {
+  console.error("Missing MONGODB_URI env var");
+  process.exit(1);
 }
 
-function escapeHtml(s) {
-  return String(s)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
+await mongoose.connect(MONGODB_URI);
 
-function formatDate(iso) {
-  try {
-    return new Date(iso).toLocaleString();
-  } catch {
-    return "";
-  }
-}
+// Simple Post schema
+const postSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true, trim: true, maxlength: 120 },
+    body: { type: String, required: true, trim: true, maxlength: 5000 },
+  },
+  { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
+);
 
-function renderPosts(posts) {
-  if (!posts?.length) {
-    postsEl.innerHTML = `<div class="text-muted">No posts yet. Be the first to post!</div>`;
-    return;
-  }
+const Post = mongoose.model("Post", postSchema);
 
-  postsEl.innerHTML = posts
-    .map(
-      (p) => `
-      <article class="card shadow-sm">
-        <div class="card-body">
-          <h3 class="h6 mb-1">${escapeHtml(p.title)}</h3>
-          <div class="text-muted small mb-2">${formatDate(p.created_at)}</div>
-          <p class="mb-0" style="white-space: pre-wrap;">${escapeHtml(p.body)}</p>
-        </div>
-      </article>
-    `
-    )
-    .join("");
-}
-
-async function loadPosts() {
-  setMsg("");
-  postsEl.innerHTML = `<div class="text-muted">Loading…</div>`;
-
-  const res = await fetch("/api/posts");
-  if (!res.ok) {
-    postsEl.innerHTML = "";
-    setMsg("Could not load posts.", "danger");
-    return;
-  }
-
-  const posts = await res.json();
-  renderPosts(posts);
-}
-
-async function createPost(title, body) {
-  const res = await fetch("/api/posts", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title, body }),
-  });
-
-  if (!res.ok) {
-    const maybe = await res.json().catch(() => ({}));
-    throw new Error(maybe?.error || "Failed to create post");
-  }
-
-  return res.json();
-}
-
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  setMsg("");
-
-  const title = titleEl.value.trim();
-  const body = bodyEl.value.trim();
-
-  if (!title || !body) {
-    setMsg("Title and post text are required.", "danger");
-    return;
-  }
-
-  submitBtn.disabled = true;
-  submitBtn.textContent = "Posting…";
-
-  try {
-    await createPost(title, body);
-    titleEl.value = "";
-    bodyEl.value = "";
-    setMsg("Posted!", "success");
-    await loadPosts();
-  } catch (err) {
-    setMsg(err.message || "Something went wrong.", "danger");
-  } finally {
-    submitBtn.disabled = false;
-    submitBtn.textContent = "Post";
-  }
+// API: get posts
+app.get("/api/posts", async (req, res) => {
+  const posts = await Post.find().sort({ created_at: -1 }).lean();
+  res.json(posts);
 });
 
-refreshBtn.addEventListener("click", loadPosts);
+// API: create post
+app.post("/api/posts", async (req, res) => {
+  const { title, body } = req.body || {};
+  if (!title?.trim() || !body?.trim()) {
+    return res.status(400).json({ error: "title and body required" });
+  }
 
-// initial load
-loadPosts();
+  const created = await Post.create({ title, body });
+  res.status(201).json(created);
+});
+
+// Render uses process.env.PORT
+const port = process.env.PORT || 3000;
+app.listen(port, "0.0.0.0", () => console.log("Listening on", port));
