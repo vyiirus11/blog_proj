@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Org Blog</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- styling libs -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+
+  <body>
+    <header class="py-4">
+      <h1 class="text-center m-0">ORG BLOG</h1>
+    </header>
+
+    <main class="container pb-5">
+      <!-- Create Post -->
+      <section class="card shadow-sm mb-4">
+        <div class="card-body">
+          <h2 class="h5 mb-3">Create a Post</h2>
+
+          <div id="msg" class="small mb-2"></div>
+
+          <form id="postForm">
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input
+                id="title"
+                class="form-control"
+                type="text"
+                maxlength="120"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="body" class="form-label">Post</label>
+              <textarea
+                id="body"
+                class="form-control"
+                rows="5"
+                maxlength="5000"
+                required
+              ></textarea>
+            </div>
+
+            <button id="submitBtn" class="btn btn-primary" type="submit">
+              Post
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Posts -->
+      <section>
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <h2 class="h5 m-0">Latest Posts</h2>
+          <button id="refreshBtn" class="btn btn-sm btn-outline-secondary">
+            Refresh
+          </button>
+        </div>
+
+        <div id="posts" class="d-grid gap-3"></div>
+      </section>
+
+      <footer class="text-center mt-5 text-muted">
+        <p class="m-0">© 2025 Org Blog</p>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
