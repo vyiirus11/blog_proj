@@ -13,10 +13,17 @@ This is a collaboration to create a *blog/article* webpage
   <br>
 </details>
 
-<br />
+<br/>
 
+<br>
+<a href="https://blog-proj-jk1i.onrender.com">
+LIVE DEMO LINK
+</a>
+</br>
+
+<br>
 <details open>
-  <summary>LIVE PREVIEW STEPS</summary>
+  <summary>LOCAL LIVE PREVIEW STEPS</summary>
   <br>
   <ol>
     <!--1.-->
@@ -76,5 +83,4 @@ This is a collaboration to create a *blog/article* webpage
 
   </ol>
 </details>
-
-<br>
+</br>
