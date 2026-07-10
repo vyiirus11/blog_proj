@@ -1,8 +1,8 @@
 import "dotenv/config";
-const path = require("path");
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
+import mongoose from "mongoose";
 
 const app = express();
 app.use(cors());
