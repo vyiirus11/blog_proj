@@ -3,6 +3,15 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import mongoose from "mongoose";
+import cors from "cors";
+
+import spacesRouter from "./routes/spaces.js";
+import reviewsRouter from "./routes/reviews.js";
+import mentorsRouter from "./routes/mentors.js";
+import analyticsRouter from "./routes/analytics.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(cors());
@@ -15,10 +24,10 @@ mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log("✅ Connected to MongoDB Atlas"))
   .catch(err => console.error("❌ MongoDB connection error:", err));
 
-app.use("/api/spaces", require("./routes/spaces"));
-app.use("/api/reviews", require("./routes/reviews"));
-app.use("/api/mentors", require("./routes/mentors"));
-app.use("/api/analytics", require("./routes/analytics"));
+app.use("/api/spaces", spacesRouter);
+app.use("/api/reviews", reviewsRouter);
+app.use("/api/mentors", mentorsRouter);
+app.use("/api/analytics", analyticsRouter);
 
 app.get("/api/health", (req, res) => res.json({ ok: true }));
 
