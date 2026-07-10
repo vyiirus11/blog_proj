@@ -59,3 +59,5 @@ app.post("/api/posts", async (req, res) => {
 // Render uses process.env.PORT
 const port = process.env.PORT || 3000;
 app.listen(port, "0.0.0.0", () => console.log("Listening on", port));
+
+console.log("URI starts with:", MONGODB_URI.slice(0, 20), "... length:", MONGODB_URI.length);
